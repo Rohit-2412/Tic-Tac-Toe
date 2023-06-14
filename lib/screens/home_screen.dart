@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 50),
 
-              // player vs player
+              // player vs computer
               SizedBox(
                 width: 300,
                 height: 60,
@@ -59,7 +59,10 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(50),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    // move to single player game screen when pressed
+                    Navigator.pushNamed(context, '/singleplayer');
+                  },
                   child: const Text(
                     "Single Player",
                     style: TextStyle(fontSize: 20, color: Colors.black),
@@ -80,7 +83,10 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(50),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    // move to multiplayer game screen when pressed
+                    Navigator.pushNamed(context, '/multiplayer');
+                  },
                   child: const Text(
                     "Multiplayer",
                     style: TextStyle(fontSize: 20, color: Colors.black),
