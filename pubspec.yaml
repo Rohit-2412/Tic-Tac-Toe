@@ -36,6 +36,25 @@ dependencies:
     cupertino_icons: ^1.0.2
     google_fonts: ^4.0.4
     sleek_circular_slider: ^2.0.1
+    flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+    android: "launcher_icon"
+    ios: true
+    image_path: "assets/tic-tac-toe.png"
+    min_sdk_android: 21 # android min sdk min:16, default 21
+    web:
+        generate: true
+        image_path: "assets/tic-tac-toe.png"
+        background_color: "#fff"
+        theme_color: "#eee"
+    windows:
+        generate: true
+        image_path: "assets/tic-tac-toe.png"
+        icon_size: 48 # min:48, max:256, default: 48
+    macos:
+        generate: true
+        image_path: "assets/tic-tac-toe.png"
 
 dev_dependencies:
     flutter_test:

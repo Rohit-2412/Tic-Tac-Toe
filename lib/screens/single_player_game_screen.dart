@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tic_tac_toe/constants/colors.dart';
-import 'package:tic_tac_toe/utils/gradient_text.dart';
 
 class SinglePlayerGameScreen extends StatefulWidget {
   const SinglePlayerGameScreen({super.key});
@@ -43,68 +42,54 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // backgroundColor: Colors.white,
-        body: SafeArea(
-      child: Scaffold(
-          // backgroundColor: Colors.white,
-          body: SafeArea(
+      // backgroundColor: Colors.white,
+      body: SafeArea(
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
           child: Column(
             children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // score in a box with border
-                      Container(
-                        height: 50,
-                        width: 80,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          border:
-                              Border.all(color: Colors.grey.withOpacity(.2)),
-                          boxShadow: const [
-                            BoxShadow(
-                                blurRadius: 2,
-                                offset: Offset(0, 2),
-                                color: Colors.white)
-                          ],
-                        ),
-                        child: Center(
-                            child: Text(
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // score in a box with border
+                    SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: Center(
+                        child: Text(
                           userScore.toString(),
-                          style: const TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold),
-                        )),
+                          style: GoogleFonts.inter(
+                              fontSize: 45, fontWeight: FontWeight.w500),
+                        ),
                       ),
+                    ),
 
-                      // image and name
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "O",
-                            style: GoogleFonts.abrilFatface(
-                              fontSize: 70,
-                              color: CustomColors.redColor,
-                            ),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
+                    // image and name
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "O",
+                          style: GoogleFonts.abrilFatface(
+                            fontSize: 70,
+                            color: CustomColors.redColor,
+                          ),
+                        )
+                      ],
+                    )
+                  ],
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               // board
-              Expanded(
-                flex: 3,
+              SizedBox(
+                // flex: 3,
+                height: MediaQuery.of(context).size.height - 450,
                 child: GridView.builder(
                   itemCount: 9,
+                  scrollDirection: Axis.vertical,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3),
                   itemBuilder: (context, index) {
@@ -150,7 +135,6 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
               ),
 
               Expanded(
-                flex: 1,
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 30),
                   child: Column(
@@ -173,25 +157,14 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
                               )
                             ],
                           ),
-                          Container(
+                          SizedBox(
                             height: 50,
-                            width: 80,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              border: Border.all(
-                                  color: Colors.grey.withOpacity(.2)),
-                              boxShadow: const [
-                                BoxShadow(
-                                    blurRadius: 2,
-                                    offset: Offset(0, 2),
-                                    color: Colors.white)
-                              ],
-                            ),
+                            width: 50,
                             child: Center(
                               child: Text(
-                                computeScore.toString(),
-                                style: const TextStyle(
-                                    fontSize: 25, fontWeight: FontWeight.bold),
+                                userScore.toString(),
+                                style: GoogleFonts.inter(
+                                    fontSize: 45, fontWeight: FontWeight.w500),
                               ),
                             ),
                           ),
@@ -203,11 +176,10 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
               ),
 
               Expanded(
-                flex: 1,
                 child: Container(
                   height: 50,
                   margin:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -217,7 +189,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
                             fontSize: 30,
                             color: result == 'O Wins'
                                 ? Colors.pinkAccent
-                                : Colors.blueAccent,
+                                : Colors.deepPurpleAccent,
                             fontWeight: FontWeight.w600),
                       ),
                       buildTimer(),
@@ -228,8 +200,8 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
             ],
           ),
         ),
-      )),
-    ));
+      ),
+    );
   }
 
   Widget buildTimer() {
@@ -237,24 +209,23 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
     return isRunning
         ? Center(
             child: (SizedBox(
-              height: 60,
-              width: 60,
+              height: 70,
+              width: 70,
               child: Stack(
                 fit: StackFit.expand,
                 children: [
                   CircularProgressIndicator(
                       value: 1 - seconds / maxSeconds,
-                      valueColor: AlwaysStoppedAnimation(Colors.green[400]),
+                      valueColor:
+                          AlwaysStoppedAnimation(Colors.deepPurple[400]),
                       strokeWidth: 7,
-                      backgroundColor: Colors.green.withOpacity(.4)
-                      // CustomColors.firstGradientColor.withOpacity(.35),
-                      ),
+                      backgroundColor: Colors.deepPurple[100]),
                   Center(
                     child: Text(
                       seconds.toString(),
                       style: const TextStyle(
                           color: Colors.black,
-                          fontSize: 20,
+                          fontSize: 30,
                           fontWeight: FontWeight.bold),
                     ),
                   )
@@ -284,7 +255,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
               attempts == 0 ? "Start" : "Play Again!",
               style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 15,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold),
             ),
           ));

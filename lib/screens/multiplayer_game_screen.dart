@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants/colors.dart';
 import 'package:tic_tac_toe/utils/gradient_text.dart';
 
+import 'package:google_fonts/google_fonts.dart';
+
 class MultiplayerGameScreen extends StatefulWidget {
   const MultiplayerGameScreen({super.key});
 
@@ -27,220 +29,166 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // backgroundColor: Colors.white,
-        body: SafeArea(
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
-        child: Column(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Container(
+      // backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+          child: Column(
+            children: [
+              Container(
                 margin: const EdgeInsets.symmetric(horizontal: 30),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     // score in a box with border
-                    Container(
+                    SizedBox(
                       height: 50,
-                      width: 80,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        border: Border.all(color: Colors.grey.withOpacity(.2)),
-                        boxShadow: const [
-                          BoxShadow(
-                              blurRadius: 2,
-                              offset: Offset(0, 2),
-                              color: Colors.white)
-                        ],
-                      ),
+                      width: 50,
                       child: Center(
-                          child: Text(
-                        oScore.toString(),
-                        style: const TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.bold),
-                      )),
+                        child: Text(
+                          oScore.toString(),
+                          style: GoogleFonts.inter(
+                              fontSize: 45, fontWeight: FontWeight.w500),
+                        ),
+                      ),
                     ),
 
                     // image and name
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        // image
-                        // o image
-                        Icon(
-                          Icons.circle_outlined,
-                          size: 50,
-                          color: CustomColors.firstGradientColor,
-                        ),
-                        //name
-                        // Text(
-                        //   'Player 1',
-                        //   style: TextStyle(
-                        //       fontSize: 25,
-                        //       color: Colors.black,
-                        //       fontWeight: FontWeight.bold),
-                        // )
+                      children: [
+                        Text(
+                          "O",
+                          style: GoogleFonts.abrilFatface(
+                            fontSize: 70,
+                            color: CustomColors.redColor,
+                          ),
+                        )
                       ],
                     )
                   ],
                 ),
               ),
-            ),
-            const SizedBox(height: 30),
-            // board
-            Expanded(
-              flex: 3,
-              child: GridView.builder(
-                itemCount: 9,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3),
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      _tapped(index);
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: winningIndex.contains(index)
-                              ? Border.all(color: Colors.black87, width: 2)
-                              : null,
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black26,
-                                blurRadius: 5,
-                                offset: Offset(5, 5))
-                          ],
-                          color: Colors.white),
-                      child: Center(
-                        child: GradientText(
-                          list[index],
-                          style: const TextStyle(fontSize: 40),
-                          gradient: (list[index] == 'O')
-                              ? LinearGradient(colors: [
-                                  CustomColors.redColor1,
-                                  CustomColors.redColor2,
-                                  CustomColors.redColor1,
-                                  CustomColors.redColor2,
-                                ])
-                              : LinearGradient(colors: [
-                                  CustomColors.blueColor,
-                                  CustomColors.blueColor1,
-                                ]),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-
-            Expanded(
-              flex: 1,
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 30),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // image and name
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            // image
-                            // o image
-                            Icon(
-                              Icons.close_outlined,
-                              size: 50,
-                              color: CustomColors.redColor,
-                            ),
-                            //name
-                            // const Text(
-                            //   'Player 2',
-                            //   style: TextStyle(
-                            //       fontSize: 25,
-                            //       color: Colors.black,
-                            //       fontWeight: FontWeight.bold),
-                            // )
-                          ],
-                        ),
-                        Container(
-                          height: 50,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            border:
-                                Border.all(color: Colors.grey.withOpacity(.2)),
+              const SizedBox(height: 50),
+              // board
+              Expanded(
+                flex: 3,
+                // height: MediaQuery.of(context).size.height - 450,
+                child: GridView.builder(
+                  itemCount: 9,
+                  scrollDirection: Axis.vertical,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3),
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        _tapped(index);
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            border: winningIndex.contains(index)
+                                ? Border.all(color: Colors.black87, width: 2)
+                                : null,
                             boxShadow: const [
                               BoxShadow(
-                                  blurRadius: 2,
-                                  offset: Offset(0, 2),
-                                  color: Colors.white)
+                                color: Colors.black12,
+                                blurRadius: 10,
+                                offset: Offset(2, -2),
+                              ),
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 5,
+                                offset: Offset(2, 2),
+                              )
+                            ],
+                            color: Colors.white),
+                        child: Center(
+                          child: Text(
+                            list[index],
+                            style: GoogleFonts.varelaRound(
+                                fontSize: 60,
+                                fontWeight: FontWeight.w900,
+                                color: (list[index] == 'O')
+                                    ? CustomColors.redColor
+                                    : CustomColors.blueColor),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // image and name
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // image
+                              // o image
+                              Text(
+                                "X",
+                                style: GoogleFonts.abrilFatface(
+                                  fontSize: 70,
+                                  color: CustomColors.blueColor,
+                                ),
+                              )
                             ],
                           ),
-                          child: Center(
+                          SizedBox(
+                            height: 50,
+                            width: 50,
+                            child: Center(
                               child: Text(
-                            xScore.toString(),
-                            style: const TextStyle(
-                                fontSize: 25, fontWeight: FontWeight.bold),
-                          )),
-                        ),
-                      ],
-                    )
-                  ],
+                                xScore.toString(),
+                                style: GoogleFonts.inter(
+                                    fontSize: 45, fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
 
-            // Expanded(
-            //   flex: 1,
-            //   child: Center(
-            //     child: Column(
-            //       mainAxisAlignment: MainAxisAlignment.center,
-            //       children: [
-            //         Text(
-            //           result.isNotEmpty ? "Result: $result" : "",
-            //           style: const TextStyle(
-            //               fontSize: 25,
-            //               color: Colors.pinkAccent,
-            //               fontWeight: FontWeight.w500),
-            //         ),
-            //         const SizedBox(height: 20),
-            //         buildTimer()
-            //       ],
-            //     ),
-            //   ),
-            // ),
-
-            Expanded(
-              flex: 1,
-              child: Container(
-                height: 50,
-                margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      result.isNotEmpty ? result : "",
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: result == 'O Wins'
-                              ? Colors.pinkAccent
-                              : Colors.blueAccent,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    buildTimer(),
-                  ],
+              Expanded(
+                child: Container(
+                  height: 50,
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        result.isNotEmpty ? result : "",
+                        style: TextStyle(
+                            fontSize: 30,
+                            color: result == 'O Wins'
+                                ? Colors.pinkAccent
+                                : Colors.deepPurpleAccent,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      buildTimer(),
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 
   Widget buildTimer() {
