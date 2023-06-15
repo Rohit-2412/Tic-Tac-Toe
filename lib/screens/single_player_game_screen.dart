@@ -32,7 +32,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
   List<int> winningIndex = [];
   String result = "";
   int userScore = 0;
-  int computeScore = 0;
+  int computerScore = 0;
   bool stopped = false;
   static const maxSeconds = 30;
   int seconds = maxSeconds;
@@ -48,41 +48,91 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
           child: Column(
             children: [
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // score in a box with border
-                    SizedBox(
-                      height: 50,
-                      width: 50,
-                      child: Center(
-                        child: Text(
-                          userScore.toString(),
-                          style: GoogleFonts.inter(
-                              fontSize: 45, fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // player name
+                  Text(
+                    "You",
+                    style: GoogleFonts.varelaRound(
+                        fontSize: 40,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.redAccent),
+                  ),
 
-                    // image and name
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  // both scores
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Row(
                       children: [
-                        Text(
-                          "O",
-                          style: GoogleFonts.abrilFatface(
-                            fontSize: 70,
-                            color: CustomColors.redColor,
+                        // user score
+                        SizedBox(
+                          height: 50,
+                          child: Center(
+                            child: Text(
+                              userScore.toString(),
+                              style: GoogleFonts.inter(
+                                  fontSize: 45, fontWeight: FontWeight.w400),
+                            ),
                           ),
-                        )
+                        ),
+                        Text("-", style: GoogleFonts.inter(fontSize: 45)),
+                        // computer score
+                        SizedBox(
+                          height: 50,
+                          child: Center(
+                            child: Text(
+                              computerScore.toString(),
+                              style: GoogleFonts.inter(
+                                  fontSize: 45, fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                        ),
                       ],
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+                  // ai name
+                  Text(
+                    "AI",
+                    style: GoogleFonts.varelaRound(
+                        fontSize: 40,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.deepPurpleAccent),
+                  ),
+
+                  // both user scores
+                  // SizedBox(
+                  //   height: 50,
+                  //   width: 50,
+                  //   child: Center(
+                  //     child: Text(
+                  //       userScore.toString(),
+                  //       style: GoogleFonts.inter(
+                  //           fontSize: 45, fontWeight: FontWeight.w500),
+                  //     ),
+                  //   ),
+                  // ),
+                  // // image and name
+                  // Text(
+                  //   "O",
+                  //   style: GoogleFonts.abrilFatface(
+                  //     fontSize: 70,
+                  //     color: CustomColors.redColor,
+                  //   ),
+                  // )
+                ],
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 100),
               // board
               SizedBox(
                 // flex: 3,
@@ -134,48 +184,49 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
                 ),
               ),
 
-              Expanded(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 30),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // image and name
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              // image
-                              // o image
-                              Text(
-                                "X",
-                                style: GoogleFonts.abrilFatface(
-                                  fontSize: 70,
-                                  color: CustomColors.blueColor,
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: Center(
-                              child: Text(
-                                userScore.toString(),
-                                style: GoogleFonts.inter(
-                                    fontSize: 45, fontWeight: FontWeight.w500),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ),
+              // Expanded(
+              //   child: Container(
+              //     margin: const EdgeInsets.symmetric(horizontal: 30),
+              //     child: Column(
+              //       children: [
+              //         Row(
+              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //           children: [
+              //             // image and name
+              //             Column(
+              //               mainAxisAlignment: MainAxisAlignment.center,
+              //               children: [
+              //                 // image
+              //                 // o image
+              //                 Text(
+              //                   "X",
+              //                   style: GoogleFonts.abrilFatface(
+              //                     fontSize: 70,
+              //                     color: CustomColors.blueColor,
+              //                   ),
+              //                 )
+              //               ],
+              //             ),
+              //             SizedBox(
+              //               height: 50,
+              //               width: 50,
+              //               child: Center(
+              //                 child: Text(
+              //                   computerScore.toString(),
+              //                   style: GoogleFonts.inter(
+              //                       fontSize: 45, fontWeight: FontWeight.w500),
+              //                 ),
+              //               ),
+              //             ),
+              //           ],
+              //         )
+              //       ],
+              //     ),
+              //   ),
+              // ),
 
               Expanded(
+                flex: 1,
                 child: Container(
                   height: 50,
                   margin:
@@ -310,7 +361,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
     if (winner == "O") {
       userScore++;
     } else if (winner == "X") {
-      computeScore++;
+      computerScore++;
     }
   }
 
@@ -436,24 +487,24 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
       return;
     }
 
-    // check for edges
-    final edges = [1, 3, 5, 7];
-    for (var i = 0; i < edges.length; i++) {
-      if (board[edges[i]] == '') {
-        setState(() {
-          board[edges[i]] = 'X';
-          userTurn = true;
-        });
-        return;
-      }
-    }
-
     // check for corners
     final corners = [0, 2, 6, 8];
     for (var i = 0; i < corners.length; i++) {
       if (board[corners[i]] == '') {
         setState(() {
           board[corners[i]] = 'X';
+          userTurn = true;
+        });
+        return;
+      }
+    }
+
+    // check for edges
+    final edges = [1, 3, 5, 7];
+    for (var i = 0; i < edges.length; i++) {
+      if (board[edges[i]] == '') {
+        setState(() {
+          board[edges[i]] = 'X';
           userTurn = true;
         });
         return;

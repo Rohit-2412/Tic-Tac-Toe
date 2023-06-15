@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/constants/colors.dart';
-import 'package:tic_tac_toe/utils/gradient_text.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
@@ -35,45 +34,73 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
           child: Column(
             children: [
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // score in a box with border
-                    SizedBox(
-                      height: 50,
-                      width: 50,
-                      child: Center(
-                        child: Text(
-                          oScore.toString(),
-                          style: GoogleFonts.inter(
-                              fontSize: 45, fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // player name
+                  Text(
+                    "Player 1",
+                    style: GoogleFonts.varelaRound(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.redAccent),
+                  ),
 
-                    // image and name
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  // both scores
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Row(
                       children: [
-                        Text(
-                          "O",
-                          style: GoogleFonts.abrilFatface(
-                            fontSize: 70,
-                            color: CustomColors.redColor,
+                        // user score
+                        SizedBox(
+                          height: 40,
+                          child: Center(
+                            child: Text(
+                              oScore.toString(),
+                              style: GoogleFonts.inter(
+                                  fontSize: 45, fontWeight: FontWeight.w400),
+                            ),
                           ),
-                        )
+                        ),
+                        Text("-", style: GoogleFonts.inter(fontSize: 45)),
+                        // computer score
+                        SizedBox(
+                          height: 40,
+                          child: Center(
+                            child: Text(
+                              xScore.toString(),
+                              style: GoogleFonts.inter(
+                                  fontSize: 45, fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                        ),
                       ],
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+                  // ai name
+                  Text(
+                    "Player 2",
+                    style: GoogleFonts.varelaRound(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.deepPurpleAccent),
+                  ),
+                ],
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 100),
               // board
-              Expanded(
-                flex: 3,
-                // height: MediaQuery.of(context).size.height - 450,
+              SizedBox(
+                // flex: 3,
+                height: MediaQuery.of(context).size.height - 450,
                 child: GridView.builder(
                   itemCount: 9,
                   scrollDirection: Axis.vertical,
@@ -122,47 +149,7 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
               ),
 
               Expanded(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 30),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // image and name
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              // image
-                              // o image
-                              Text(
-                                "X",
-                                style: GoogleFonts.abrilFatface(
-                                  fontSize: 70,
-                                  color: CustomColors.blueColor,
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: Center(
-                              child: Text(
-                                xScore.toString(),
-                                style: GoogleFonts.inter(
-                                    fontSize: 45, fontWeight: FontWeight.w500),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ),
-
-              Expanded(
+                flex: 1,
                 child: Container(
                   height: 50,
                   margin:
