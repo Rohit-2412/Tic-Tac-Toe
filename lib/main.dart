@@ -2,9 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/screens/multiplayer_game_screen.dart';
 import 'package:tic_tac_toe/screens/home_screen.dart';
 import 'package:tic_tac_toe/screens/single_player_game_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'utils/theme_provider.dart';
+import 'screens/home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -12,15 +21,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
+      title: 'Tic Tac Toe',
+      theme: themeProvider.themeData,
+      initialRoute: '/',
       routes: {
         '/': (context) => const HomeScreen(),
         '/multiplayer': (context) => const MultiplayerGameScreen(),
         '/singleplayer': (context) => const SinglePlayerGameScreen(),
       },
-      initialRoute: '/',
     );
   }
 }

@@ -13,8 +13,28 @@ class SinglePlayerGameScreen extends StatefulWidget {
 
 class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
   bool userTurn = true;
-  List<String> board = ['', '', '', '', '', '', '', '', ''];
-  List<int> magicSquare = [2, 7, 6, 9, 5, 1, 4, 3, 8];
+  List<String> board = [
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''
+  ];
+  List<int> magicSquare = [
+    2,
+    7,
+    6,
+    9,
+    5,
+    1,
+    4,
+    3,
+    8
+  ];
   // [2, 7, 6,
   // 9, 5, 1,
   // 4, 3, 8];
@@ -56,10 +76,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
                   // player name
                   Text(
                     "You",
-                    style: GoogleFonts.varelaRound(
-                        fontSize: 40,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.redAccent),
+                    style: GoogleFonts.varelaRound(fontSize: 40, fontWeight: FontWeight.w500, color: Colors.redAccent),
                   ),
 
                   // both scores
@@ -81,8 +98,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
                           child: Center(
                             child: Text(
                               userScore.toString(),
-                              style: GoogleFonts.inter(
-                                  fontSize: 45, fontWeight: FontWeight.w400),
+                              style: GoogleFonts.inter(fontSize: 45, fontWeight: FontWeight.w400),
                             ),
                           ),
                         ),
@@ -93,8 +109,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
                           child: Center(
                             child: Text(
                               computerScore.toString(),
-                              style: GoogleFonts.inter(
-                                  fontSize: 45, fontWeight: FontWeight.w400),
+                              style: GoogleFonts.inter(fontSize: 45, fontWeight: FontWeight.w400),
                             ),
                           ),
                         ),
@@ -104,10 +119,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
                   // ai name
                   Text(
                     "AI",
-                    style: GoogleFonts.varelaRound(
-                        fontSize: 40,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.deepPurpleAccent),
+                    style: GoogleFonts.varelaRound(fontSize: 40, fontWeight: FontWeight.w500, color: Colors.deepPurpleAccent),
                   ),
 
                   // both user scores
@@ -140,8 +152,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
                 child: GridView.builder(
                   itemCount: 9,
                   scrollDirection: Axis.vertical,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
@@ -151,9 +162,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
                         margin: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            border: winningIndex.contains(index)
-                                ? Border.all(color: Colors.black87, width: 2)
-                                : null,
+                            border: winningIndex.contains(index) ? Border.all(color: Colors.black87, width: 2) : null,
                             boxShadow: const [
                               BoxShadow(
                                 color: Colors.black12,
@@ -170,12 +179,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
                         child: Center(
                           child: Text(
                             board[index],
-                            style: GoogleFonts.varelaRound(
-                                fontSize: 60,
-                                fontWeight: FontWeight.w900,
-                                color: (board[index] == 'O')
-                                    ? CustomColors.redColor
-                                    : CustomColors.blueColor),
+                            style: GoogleFonts.varelaRound(fontSize: 60, fontWeight: FontWeight.w900, color: (board[index] == 'O') ? CustomColors.redColor : CustomColors.blueColor),
                           ),
                         ),
                       ),
@@ -229,19 +233,13 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
                 flex: 1,
                 child: Container(
                   height: 50,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                  margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         result.isNotEmpty ? result : "",
-                        style: TextStyle(
-                            fontSize: 30,
-                            color: result == 'O Wins'
-                                ? Colors.pinkAccent
-                                : Colors.deepPurpleAccent,
-                            fontWeight: FontWeight.w600),
+                        style: TextStyle(fontSize: 30, color: result == 'O Wins' ? Colors.pinkAccent : Colors.deepPurpleAccent, fontWeight: FontWeight.w600),
                       ),
                       buildTimer(),
                     ],
@@ -265,19 +263,11 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  CircularProgressIndicator(
-                      value: 1 - seconds / maxSeconds,
-                      valueColor:
-                          AlwaysStoppedAnimation(Colors.deepPurple[400]),
-                      strokeWidth: 7,
-                      backgroundColor: Colors.deepPurple[100]),
+                  CircularProgressIndicator(value: 1 - seconds / maxSeconds, valueColor: AlwaysStoppedAnimation(Colors.deepPurple[400]), strokeWidth: 7, backgroundColor: Colors.deepPurple[100]),
                   Center(
                     child: Text(
                       seconds.toString(),
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold),
+                      style: const TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                   )
                 ],
@@ -289,7 +279,17 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
               setState(() {
                 userTurn = true;
                 startTimer();
-                board = ['', '', '', '', '', '', '', '', ''];
+                board = [
+                  '',
+                  '',
+                  '',
+                  '',
+                  '',
+                  '',
+                  '',
+                  '',
+                  ''
+                ];
                 result = "";
                 attempts++;
                 winningIndex = [];
@@ -304,10 +304,7 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
             ),
             child: Text(
               attempts == 0 ? "Start" : "Play Again!",
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
+              style: const TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ));
   }
@@ -397,7 +394,11 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
                 setState(() {
                   board[index] = 'X';
                   result = "X Wins";
-                  winningIndex = [i, j, index];
+                  winningIndex = [
+                    i,
+                    j,
+                    index
+                  ];
                   _updateScore("X");
                   stopTimer();
                 });
@@ -440,7 +441,11 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
           for (var k = j + 1; k < 9; k++) {
             if (board[i] == "O" && board[j] == "O" && board[k] == "O") {
               if (magicSquare[i] + magicSquare[j] + magicSquare[k] == 15) {
-                winningIndex = [i, j, k];
+                winningIndex = [
+                  i,
+                  j,
+                  k
+                ];
                 setState(() {
                   result = 'O Wins';
                   _updateScore('O');
@@ -460,7 +465,11 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
           for (var k = j + 1; k < 9; k++) {
             if (board[i] == "X" && board[j] == "X" && board[k] == "X") {
               if (magicSquare[i] + magicSquare[j] + magicSquare[k] == 15) {
-                winningIndex = [i, j, k];
+                winningIndex = [
+                  i,
+                  j,
+                  k
+                ];
                 setState(() {
                   result = 'X Wins';
                   _updateScore('X');
@@ -488,7 +497,12 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
     }
 
     // check for corners
-    final corners = [0, 2, 6, 8];
+    final corners = [
+      0,
+      2,
+      6,
+      8
+    ];
     for (var i = 0; i < corners.length; i++) {
       if (board[corners[i]] == '') {
         setState(() {
@@ -500,7 +514,12 @@ class _SinglePlayerGameScreenState extends State<SinglePlayerGameScreen> {
     }
 
     // check for edges
-    final edges = [1, 3, 5, 7];
+    final edges = [
+      1,
+      3,
+      5,
+      7
+    ];
     for (var i = 0; i < edges.length; i++) {
       if (board[edges[i]] == '') {
         setState(() {

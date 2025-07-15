@@ -14,7 +14,17 @@ class MultiplayerGameScreen extends StatefulWidget {
 
 class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
   bool oTurn = true;
-  List<String> list = ['', '', '', '', '', '', '', '', ''];
+  List<String> list = [
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''
+  ];
   List<int> winningIndex = [];
   String result = "";
   int oScore = 0;
@@ -42,10 +52,7 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
                   // player name
                   Text(
                     "Player 1",
-                    style: GoogleFonts.varelaRound(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.redAccent),
+                    style: GoogleFonts.varelaRound(fontSize: 30, fontWeight: FontWeight.w500, color: Colors.redAccent),
                   ),
 
                   // both scores
@@ -66,8 +73,7 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
                           child: Center(
                             child: Text(
                               oScore.toString(),
-                              style: GoogleFonts.inter(
-                                  fontSize: 45, fontWeight: FontWeight.w400),
+                              style: GoogleFonts.inter(fontSize: 45, fontWeight: FontWeight.w400),
                             ),
                           ),
                         ),
@@ -78,8 +84,7 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
                           child: Center(
                             child: Text(
                               xScore.toString(),
-                              style: GoogleFonts.inter(
-                                  fontSize: 45, fontWeight: FontWeight.w400),
+                              style: GoogleFonts.inter(fontSize: 45, fontWeight: FontWeight.w400),
                             ),
                           ),
                         ),
@@ -89,10 +94,7 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
                   // ai name
                   Text(
                     "Player 2",
-                    style: GoogleFonts.varelaRound(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.deepPurpleAccent),
+                    style: GoogleFonts.varelaRound(fontSize: 30, fontWeight: FontWeight.w500, color: Colors.deepPurpleAccent),
                   ),
                 ],
               ),
@@ -104,8 +106,7 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
                 child: GridView.builder(
                   itemCount: 9,
                   scrollDirection: Axis.vertical,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
@@ -115,9 +116,7 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
                         margin: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            border: winningIndex.contains(index)
-                                ? Border.all(color: Colors.black87, width: 2)
-                                : null,
+                            border: winningIndex.contains(index) ? Border.all(color: Colors.black87, width: 2) : null,
                             boxShadow: const [
                               BoxShadow(
                                 color: Colors.black12,
@@ -134,12 +133,7 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
                         child: Center(
                           child: Text(
                             list[index],
-                            style: GoogleFonts.varelaRound(
-                                fontSize: 60,
-                                fontWeight: FontWeight.w900,
-                                color: (list[index] == 'O')
-                                    ? CustomColors.redColor
-                                    : CustomColors.blueColor),
+                            style: GoogleFonts.varelaRound(fontSize: 60, fontWeight: FontWeight.w900, color: (list[index] == 'O') ? CustomColors.redColor : CustomColors.blueColor),
                           ),
                         ),
                       ),
@@ -152,19 +146,13 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
                 flex: 1,
                 child: Container(
                   height: 50,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                  margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         result.isNotEmpty ? result : "",
-                        style: TextStyle(
-                            fontSize: 30,
-                            color: result == 'O Wins'
-                                ? Colors.pinkAccent
-                                : Colors.deepPurpleAccent,
-                            fontWeight: FontWeight.w600),
+                        style: TextStyle(fontSize: 30, color: result == 'O Wins' ? Colors.pinkAccent : Colors.deepPurpleAccent, fontWeight: FontWeight.w600),
                       ),
                       buildTimer(),
                     ],
@@ -188,20 +176,13 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  CircularProgressIndicator(
-                      value: 1 - seconds / maxSeconds,
-                      valueColor: AlwaysStoppedAnimation(Colors.green[400]),
-                      strokeWidth: 7,
-                      backgroundColor: Colors.green.withOpacity(.4)
+                  CircularProgressIndicator(value: 1 - seconds / maxSeconds, valueColor: AlwaysStoppedAnimation(Colors.green[400]), strokeWidth: 7, backgroundColor: Colors.green.withOpacity(.4)
                       // CustomColors.firstGradientColor.withOpacity(.35),
                       ),
                   Center(
                     child: Text(
                       seconds.toString(),
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                      style: const TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   )
                 ],
@@ -212,7 +193,17 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
             onPressed: () {
               setState(() {
                 startTimer();
-                list = ['', '', '', '', '', '', '', '', ''];
+                list = [
+                  '',
+                  '',
+                  '',
+                  '',
+                  '',
+                  '',
+                  '',
+                  '',
+                  ''
+                ];
                 result = "";
                 attempts++;
                 winningIndex = [];
@@ -227,10 +218,7 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
             ),
             child: Text(
               attempts == 0 ? "Start" : "Play Again!",
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold),
+              style: const TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
             ),
           ));
   }
@@ -284,7 +272,11 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
     if (list[0] == list[1] && list[0] == list[2] && list[0] != '') {
       setState(() {
         result = "${list[0]} wins";
-        winningIndex = [0, 1, 2];
+        winningIndex = [
+          0,
+          1,
+          2
+        ];
       });
     }
 
@@ -292,7 +284,11 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
     if (list[3] == list[4] && list[3] == list[5] && list[3] != '') {
       setState(() {
         result = "${list[3]} wins";
-        winningIndex = [3, 4, 5];
+        winningIndex = [
+          3,
+          4,
+          5
+        ];
       });
     }
 
@@ -300,7 +296,11 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
     if (list[6] == list[7] && list[6] == list[8] && list[6] != '') {
       setState(() {
         result = "${list[6]} wins";
-        winningIndex = [6, 7, 8];
+        winningIndex = [
+          6,
+          7,
+          8
+        ];
       });
     }
 
@@ -308,7 +308,11 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
     if (list[0] == list[3] && list[0] == list[6] && list[0] != '') {
       setState(() {
         result = "${list[0]} wins";
-        winningIndex = [0, 3, 6];
+        winningIndex = [
+          0,
+          3,
+          6
+        ];
       });
     }
 
@@ -316,7 +320,11 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
     if (list[1] == list[4] && list[1] == list[7] && list[1] != '') {
       setState(() {
         result = "${list[1]} wins";
-        winningIndex = [1, 4, 7];
+        winningIndex = [
+          1,
+          4,
+          7
+        ];
       });
     }
 
@@ -324,7 +332,11 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
     if (list[2] == list[5] && list[2] == list[8] && list[2] != '') {
       setState(() {
         result = "${list[2]} wins";
-        winningIndex = [2, 5, 8];
+        winningIndex = [
+          2,
+          5,
+          8
+        ];
       });
     }
 
@@ -332,7 +344,11 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
     if (list[0] == list[4] && list[0] == list[8] && list[0] != '') {
       setState(() {
         result = "${list[0]} wins";
-        winningIndex = [0, 4, 8];
+        winningIndex = [
+          0,
+          4,
+          8
+        ];
       });
     }
 
@@ -340,7 +356,11 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
     if (list[2] == list[4] && list[2] == list[6] && list[2] != '') {
       setState(() {
         result = "${list[2]} wins";
-        winningIndex = [2, 4, 6];
+        winningIndex = [
+          2,
+          4,
+          6
+        ];
       });
     }
 
